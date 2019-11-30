@@ -22,5 +22,7 @@ Route::post('enable/{id}', 'StaffController@enable');
 Route::get('edit-staff/{id}/edit', 'StaffController@edit');
 Route::post('staff-update/{id}', 'StaffController@update');
 Route::post('search-result', 'StaffController@search');
+Route::post('create-staff', 'StaffController@store');
+Route::get('create-staff-record', 'StaffController@create');
 
 Route::get('/home', 'HomeController@index')->name('home');

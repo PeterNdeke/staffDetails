@@ -1,17 +1,13 @@
 @extends('layouts.app')
-<script>
-    $(document).ready(function() {
-        $('#example').DataTable();
-    } );
-    </script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+
 @section('content')
 <div class="container">
     @include('partials.flash')
     <div class="row">
         <div class="col-md-6">
-                <h2>Staff Details</h2>
+        <a href="{{url('create-staff-record')}}" type="button" class="btn btn-primary">
+                    Add Staff
+                </a>
         </div>
         <div class="col-md-6">
         <form action="{{url('search-result')}}" method="post" class="form-inline">
@@ -87,5 +83,6 @@
     </table>
     {{ $staff->links() }}
 </div>
+<!-- Modal -->
 
 @endsection

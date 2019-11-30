@@ -49,7 +49,23 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'position' => 'required',
+            'email' => 'required',
+        ]);
+
+        $model = new Staff();
+        $model->first_name = $request->first_name;
+        $model->last_name = $request->last_name;
+        $model->position = $request->position;
+        $model->email = $request->email;
+        $model->save();
+
+        return redirect('/')->with([
+            'flash_message' => 'Staff created Successfully',
+        ]);
     }
 
     /**
@@ -61,6 +77,17 @@ class StaffController extends Controller
     public function show(Staff $staff)
     {
         //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Staff  $staff
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('staff.add');
     }
 
     /**
@@ -113,7 +140,7 @@ class StaffController extends Controller
         //  $query = $request->query;
 
         $query = $request->search;
-       
+
         $searchResults = (new Search())
             ->registerModel(Staff::class, ['first_name', 'last_name', 'email', 'position'])
             ->perform($query);
